@@ -1,0 +1,3 @@
+[submodule "skk"]
+	path = skk
+	url = git@github.com:karino2/RhinocsSKK.git
