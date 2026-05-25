@@ -49,18 +49,19 @@ function list_history() {
     history.items.forEach((item, index) => {
         insert(`${index}: ${item.fname}\n  (${item.uri})\n`);
     });
-    let key = read_key("Choose file: ");
-    // print("key: " + key);
-    if (key >= '0' && key <= '9') {
-        let index = parseInt(key);
-        if (index < history.items.length) {
-            let item = history.items[index];
-            history.push(item.uri, item.fname); // Move to top
-            open_uri(item.uri);
-            return;
+    read_key("Choose file: ").then(key=> {
+        // print("key: " + key);
+        if (key >= '0' && key <= '9') {
+            let index = parseInt(key);
+            if (index < history.items.length) {
+                let item = history.items[index];
+                history.push(item.uri, item.fname); // Move to top
+                open_uri(item.uri);
+                return;
+            }
         }
-    }
-    message("Invalid selection: " + key);
+        message("Invalid selection: " + key);
+    });
 }
 
 global_set_key(["C-x", "C-f"], find_file_with_history);
