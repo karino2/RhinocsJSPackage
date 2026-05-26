@@ -35,7 +35,7 @@ history.load();
 
 function find_file_with_history() {
    // print("find file with history");
-   select_file(["*/*"]).then((uri, fname)=> {
+   select_file(["*/*"]).then(([uri, fname])=> {
     history.push(uri, fname);
     open_uri(uri);
    });
