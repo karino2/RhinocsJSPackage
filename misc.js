@@ -1,10 +1,12 @@
 let buf = get_buffer_create("*scratch*");
-switch_to_buffer(buf);
+set_buffer(buf);
 
 // eval_region用
 set_device_id("BOOX");
 set_device_id("MotoG53y");
 message(get_device_id());
+
+read_filtering_list(["abc", "abcab", "abcad", "abd", "dabc", "ddd", "abcad"]).then(text=>print(text))
 
 
 read_string("Hoge: ").then((str)=>{show_toast(str)});

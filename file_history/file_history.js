@@ -43,7 +43,7 @@ function find_file_with_history() {
 
 function list_history() {
     let buf = get_buffer_create("*file history*");
-    switch_to_buffer(buf);
+    set_buffer(buf);
     delete_region(0, point_max());
     insert("File History:\n\n");
     history.items.forEach((item, index) => {
