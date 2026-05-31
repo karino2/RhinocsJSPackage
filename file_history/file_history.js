@@ -33,28 +33,25 @@ let history = {
 
 history.load();
 
-function find_file_with_history() {
-   // print("find file with history");
-   select_file(["*/*"]).then(([uri, fname])=> {
-    history.push(uri, fname);
-    open_uri(uri);
-   });
-}
+g_hooks.addHook("visit_newfile_hook", (uri, fname)=> {
+   history.push(uri, fname);
+});
 
 function list_history() {
     let buf = get_buffer_create("*file history*");
     set_buffer(buf);
     delete_region(0, point_max());
     insert("File History:\n\n");
-    history.items.forEach((item, index) => {
+    // 表示・選択対象は先頭10件までにする
+    let displayed = history.items.slice(0, 10);
+    displayed.forEach((item, index) => {
         insert(`${index}: ${item.fname}\n  (${item.uri})\n`);
     });
     read_key("Choose file: ").then(key=> {
-        // print("key: " + key);
         if (key >= '0' && key <= '9') {
             let index = parseInt(key);
-            if (index < history.items.length) {
-                let item = history.items[index];
+            if (index < displayed.length) {
+                let item = displayed[index];
                 history.push(item.uri, item.fname); // Move to top
                 open_uri(item.uri);
                 return;
@@ -64,10 +61,7 @@ function list_history() {
     });
 }
 
-global_set_key(["C-x", "C-f"], find_file_with_history);
 global_set_key(["C-x", "C-h"], list_history);
 
 
 })();
-
-// write_file("Hello, World", join_path(get_per_device_storage(), "/file_history/data/test2.txt"));

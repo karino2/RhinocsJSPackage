@@ -13,7 +13,7 @@ read_string("Hoge: ").then((str)=>{show_toast(str)});
 
 
 
-select_file(["*/*"]).then(([uri, fname])=>print(`${uri}, ${fname}`));
+select_open_file(["*/*"]).then(([uri, fname])=>print(`${uri}, ${fname}`));
 
 var buf = get_buffer_create("*tmp*");
 print(buf.name)
