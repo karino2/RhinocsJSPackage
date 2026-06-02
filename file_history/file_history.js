@@ -61,7 +61,6 @@ function list_history() {
     });
 }
 
-global_set_key(["C-x", "C-h"], list_history);
 
-
+global.list_history = list_history;
 })();
