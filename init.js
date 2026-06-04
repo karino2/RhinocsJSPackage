@@ -12,7 +12,7 @@ global_set_key(["C-x", "C-j"], () => {
             toggleSKK();
         });
         global_mini_set_key(["C-x", "C-j"], () => {
-          toggleMiniBufferSKK();
+            toggleSKK();
         });
         toggleSKK();
     });
