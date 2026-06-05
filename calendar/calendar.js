@@ -1,3 +1,8 @@
+/*
+ xyzzyのcalendar.lの移植をしようと思ったけれど、白黒でグレゴリオ暦前提だと処理のほとんどが不要だったため書き直した。
+ jdFromUTだけcalendar.lと同じロジックになっている。表示周りはもっと雑に作り直している。
+*/
+
 (function (root) {
   const LAST_DAY_OF_MONTH = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   
@@ -17,6 +22,7 @@
     return LAST_DAY_OF_MONTH[month];
   }
 
+  // この辺はxyzzyのcalendar.lより。
   function jdFromUT(year, month, day) {
     if (month <= 2) {
       year -= 1;
