@@ -4,6 +4,8 @@ load_js("/file_history/file_history.js").then(() => {
     });
 });
 
+load_js("/calendar/calendar.js");
+
 // skk_all.jsは時間がかかるのでlazyにロード
 global_set_key(["C-x", "C-j"], () => {
     show_toast("Loading SKK...");

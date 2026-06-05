@@ -1,3 +1,11 @@
+global_set_key("C-s", isearch_forward);
+global_set_key("C-r", isearch_backward);
+
+load_js("/calendar/calendar.js");
+
+calendar()
+
+
 let buf = get_buffer_create("*scratch*");
 set_buffer(buf);
 
