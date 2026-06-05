@@ -47,6 +47,7 @@ function list_history() {
     displayed.forEach((item, index) => {
         insert(`${index}: ${item.fname}\n  (${item.uri})\n`);
     });
+    beginning_of_buffer();
     read_key("Choose file: ").then(key=> {
         if (key >= '0' && key <= '9') {
             let index = parseInt(key);
