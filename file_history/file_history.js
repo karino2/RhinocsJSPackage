@@ -25,7 +25,7 @@ let history = {
 
     load() {
         let json = read_file(this.historyPath());
-        if (json) {
+        if (json != "") {
             this.items = JSON.parse(json);
         }
     },
