@@ -33,8 +33,8 @@ let history = {
 
 history.load();
 
-g_hooks.addHook("visit_newfile_hook", (uri, fname)=> {
-   history.push(uri, fname);
+g_hooks.addHook("visit_newfile_hook", (file)=> {
+   history.push(file.getUri(), file.getName());
 });
 
 function list_history() {
