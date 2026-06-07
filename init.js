@@ -1,7 +1,8 @@
 load_js("/file_history/file_history.js").then(() => {
-    global_set_key(["C-x", "C-h"], () => {
-        list_history();
-    });
+    global_set_key(["C-x", "C-h"], list_history);
+    global_set_key(["C-x", "C-d"], filer_find_from_last_dir);
+    global_set_key(["C-x", "C-r"], filer_find_dir_and_file);
+
 });
 
 load_js("/calendar/calendar.js");

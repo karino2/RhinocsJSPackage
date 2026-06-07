@@ -1,3 +1,7 @@
+global_set_key(["C-x", "C-d"], filer_find_from_last_dir)
+global_set_key(["C-x", "C-r"], filer_find_dir_and_file)
+
+
 global_set_key("C-s", isearch_forward);
 global_set_key("C-r", isearch_backward);
 
