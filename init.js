@@ -1,7 +1,8 @@
 load_js("/filer/filer.js").then(() => {
-    global_set_key(["C-x", "C-h"], filer_list_history);
-    global_set_key(["C-x", "C-d"], filer_find_from_last_dir);
-    global_set_key(["C-x", "C-r"], filer_find_dir_and_file);
+    global_set_key(["C-x", "C-h"], filer_find_from_history);
+    global_set_key(["C-x", "C-d", "C-f"], filer_find_from_last_dir);
+    global_set_key(["C-x", "C-d", "C-d"], filer_find_dir_and_file);
+    global_set_key(["C-x", "C-d", "C-r"], filer_register_dir);
 
 });
 

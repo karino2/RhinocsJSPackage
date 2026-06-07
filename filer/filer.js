@@ -54,7 +54,7 @@ function list_history() {
         });
 }
 
-global.filer_list_history = list_history;
+global.filer_find_from_history = list_history;
 
 /*
   filerの実装。
