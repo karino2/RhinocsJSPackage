@@ -101,7 +101,7 @@ function filer_find_from_last_dir() {
     let files = dir.listFiles();
     files = to_js_array(files);
     files.sort((a, b) => {
-        return a.getLastModified() - b.getLastModified();
+        return b.getLastModified() - a.getLastModified();
     });
     let fnames = files.map( f=> f.getName() );
     read_filtering_list(fnames)

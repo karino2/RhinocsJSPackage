@@ -15,7 +15,7 @@ set_device_id("BOOX");
 set_device_id("MotoG53y");
 message(get_device_id());
 
-read_filtering_list(["abc", "abcab", "abcad", "abd", "dabc", "ddd", "abcad"]).then({index, name}=>print(name))
+read_filtering_list(["1abc", "2abcab", "abcad", "abd", "dabc", "ddd", "abcad"]).then({index, name}=>print(name))
 
 
 read_string("Hoge: ").then((str)=>{show_toast(str)});
