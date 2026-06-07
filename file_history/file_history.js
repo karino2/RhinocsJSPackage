@@ -105,8 +105,7 @@ function filer_find_from_last_dir() {
     });
     let fnames = files.map( f=> f.getName() );
     read_filtering_list(fnames)
-      .then(n=> {
-        let index = fnames.indexOf(n);
+      .then(({index, name})=> {
         find_file_ff(files[index]);
     });
 }
@@ -115,8 +114,7 @@ function filer_find_dir_and_file() {
     let dirs = dirDB.items;
     let dirNames = dirs.map(d=>d.name);
     read_filtering_list(dirNames)
-        .then(n=> {
-            let index = dirNames.indexOf(n);
+        .then(({index})=> {
             let dir = dirs[index];
             dirDB.push(dir.uri, dir.name);
             filer_find_from_last_dir();

@@ -1,6 +1,3 @@
-global_set_key(["C-x", "C-d"], filer_find_from_last_dir)
-global_set_key(["C-x", "C-r"], filer_find_dir_and_file)
-
 
 global_set_key("C-s", isearch_forward);
 global_set_key("C-r", isearch_backward);
@@ -18,7 +15,7 @@ set_device_id("BOOX");
 set_device_id("MotoG53y");
 message(get_device_id());
 
-read_filtering_list(["abc", "abcab", "abcad", "abd", "dabc", "ddd", "abcad"]).then(text=>print(text))
+read_filtering_list(["abc", "abcab", "abcad", "abd", "dabc", "ddd", "abcad"]).then({index, name}=>print(name))
 
 
 read_string("Hoge: ").then((str)=>{show_toast(str)});
