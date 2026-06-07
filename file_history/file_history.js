@@ -3,10 +3,10 @@
 function CreateFileUriDB(jsonName) {
     return {
         items: [],
-        push(uri, fname) {
+        push(uri, name) {
             let existing = this.items.find(item => item.uri == uri);
             if (!existing) {
-                this.items.unshift({uri, fname});
+                this.items.unshift({uri, name});
             } else {
                 this.items = this.items.filter(item => item.uri != uri);
                 this.items.unshift(existing);
@@ -51,7 +51,7 @@ function list_history() {
     // 表示・選択対象は先頭10件までにする
     let displayed = fileHistory.items.slice(0, 10);
     displayed.forEach((item, index) => {
-        insert(`${index}: ${item.fname}\n  (${item.uri})\n`);
+        insert(`${index}: ${item.name}\n  (${item.uri})\n`);
     });
     beginning_of_buffer();
     read_key("Choose file: ").then(key=> {
@@ -59,7 +59,7 @@ function list_history() {
             let index = parseInt(key);
             if (index < displayed.length) {
                 let item = displayed[index];
-                fileHistory.push(item.uri, item.fname); // Move to top
+                fileHistory.push(item.uri, item.name); // Move to top
                 open_uri(item.uri);
                 return;
             }
@@ -113,12 +113,12 @@ function filer_find_from_last_dir() {
 
 function filer_find_dir_and_file() {
     let dirs = dirDB.items;
-    let dirNames = dirs.map(d=>d.fname);
+    let dirNames = dirs.map(d=>d.name);
     read_filtering_list(dirNames)
         .then(n=> {
             let index = dirNames.indexOf(n);
             let dir = dirs[index];
-            dirDB.push(dir.uri, dir.fname);
+            dirDB.push(dir.uri, dir.name);
             filer_find_from_last_dir();
         });
 }
