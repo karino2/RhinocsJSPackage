@@ -44,28 +44,14 @@ g_hooks.addHook("find_file_hook", (file)=> {
 });
 
 function list_history() {
-    let buf = get_buffer_create("*file history*");
-    set_buffer(buf);
-    delete_region(0, point_max());
-    insert("File History:\n\n");
-    // 表示・選択対象は先頭10件までにする
-    let displayed = fileHistory.items.slice(0, 10);
-    displayed.forEach((item, index) => {
-        insert(`${index}: ${item.name}\n  (${item.uri})\n`);
-    });
-    beginning_of_buffer();
-    read_key("Choose file: ").then(key=> {
-        if (key >= '0' && key <= '9') {
-            let index = parseInt(key);
-            if (index < displayed.length) {
-                let item = displayed[index];
-                fileHistory.push(item.uri, item.name); // Move to top
-                open_uri(item.uri);
-                return;
-            }
-        }
-        message("Invalid selection: " + key);
-    });
+    let files = fileHistory.items;
+    let fnames = files.map(d=>d.name);
+    read_filtering_list(fnames)
+        .then(({index})=> {
+            let item = files[index];
+            fileHistory.push(item.uri, item.name);
+            open_uri(item.uri);
+        });
 }
 
 global.filer_list_history = list_history;
