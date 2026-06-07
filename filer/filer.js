@@ -15,7 +15,7 @@ function CreateFileUriDB(jsonName) {
         },
 
         jsonPath() {
-            return join_path(get_per_device_storage(), "/file_history/", jsonName);
+            return join_path(get_per_device_storage(), "/filer/", jsonName);
         },
 
         save() {
@@ -68,7 +68,7 @@ function list_history() {
     });
 }
 
-global.list_history = list_history;
+global.filer_list_history = list_history;
 
 /*
   filerの実装。
