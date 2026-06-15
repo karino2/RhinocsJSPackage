@@ -2,3 +2,7 @@ skk/original
 apks
 .DS_Store
 storage
+_pull_override.sh
+builtins_override.js
+pull_apk.sh
+push_override.sh
