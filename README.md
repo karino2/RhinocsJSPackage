@@ -1,6 +1,6 @@
 # JS Package for Rhinocs
 
-THis is the JS package for [Rhinocs](https://github.com/karino2/Rhinocs).
+This repository is the JS package for [Rhinocs](https://github.com/karino2/Rhinocs).
 Use the same tag version of the one of Rhinocs.
 
 ## Custom commands
