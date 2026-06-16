@@ -22,6 +22,10 @@ global_set_key(["C-x", "C-j"], () => {
     });
 });
 
+/*
+  ここより下は私が個人的に使うコマンドなど。
+  本来は公開用レポジトリからは分けるべきものだが、他のユーザーが増えてくるまでは気にせずここに書いてしまう。
+*/
 
 function today() {
     let date = new Date();
@@ -35,4 +39,24 @@ function today() {
     let formatted = yyyy + "-" + mm + "-" + dd + " (" + ddd + ")";
 
     insert(formatted);
+}
+
+function blog() {
+    read_string("blog fname: ")
+      .then(fsym=> {
+        const date = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
+        const filename = `${date}-${fsym}.md`;
+        return select_new_file(filename)
+      })
+      .then(ff=>{
+        let buf = generate_new_buffer(ff.getName());
+        set_buffer(buf);
+        insert(`---
+title: NewTitle
+layout: page
+---
+`);
+        set_buffer_url(buf, ff.getUri());
+        save_buffer();
+      });
 }
