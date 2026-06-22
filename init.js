@@ -60,3 +60,19 @@ layout: page
         save_buffer();
       });
 }
+
+/*
+ [[ほげほげ]] を [ほげほげ](https://karino2.github.io/RandomThoughts/ほげほげ) みたいなリンクに展開する。
+*/
+function extract() {
+    const newLines =
+        selected_buffer_lines()
+        .map(line=> {
+            return line.replace(/\[\[(.+?)\]\]/g, (match, content) => {
+                const text = content.trim();
+                const url = "https://karino2.github.io/RandomThoughts/" + encodeURIComponent(text.normalize('NFC'));
+                return `[${text}](${url})`;
+            });
+        });
+    bulk_replace(newLines);
+}
