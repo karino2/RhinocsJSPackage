@@ -26,3 +26,20 @@ select_open_file(["*/*"]).then(([uri, fname])=>print(`${uri}, ${fname}`));
 
 var buf = get_buffer_create("*tmp*");
 print(buf.name)
+
+String(get_rhinocs().getLogBuffer().toString())
+
+test
+
+
+
+print("test")
+
+
+
+function log() {
+  var lbuf = get_buffer_create("*print logs*");
+  set_buffer(lbuf);
+  delete_region(0, point_max(), false);
+  insert(get_rhinocs().getLogBuffer().toString(), false);
+}
