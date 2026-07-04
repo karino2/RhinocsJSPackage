@@ -8,6 +8,13 @@ load_js("/filer/filer.js").then(() => {
 
 load_js("/calendar/calendar.js");
 
+load_js("/executor/executor.js").then(() => {
+    global_set_key(["M-x"], () => {
+        execute_command();
+    });
+});
+
+
 // skk_all.jsは時間がかかるのでlazyにロード
 global_set_key(["C-x", "C-j"], () => {
     show_toast("Loading SKK...");
@@ -27,7 +34,7 @@ global_set_key(["C-x", "C-j"], () => {
   本来は公開用レポジトリからは分けるべきものだが、他のユーザーが増えてくるまでは気にせずここに書いてしまう。
 */
 
-function today() {
+function today_cmd() {
     let date = new Date();
     let weekdays = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -41,7 +48,7 @@ function today() {
     insert(formatted);
 }
 
-function blog() {
+function blog_cmd() {
     read_string("blog fname: ")
       .then(fsym=> {
         const date = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
@@ -64,7 +71,7 @@ layout: page
 /*
  [[ほげほげ]] を [ほげほげ](https://karino2.github.io/RandomThoughts/ほげほげ) みたいなリンクに展開する。
 */
-function extract() {
+function extract_cmd() {
     const newLines =
         selected_buffer_lines()
         .map(line=> {
@@ -75,4 +82,17 @@ function extract() {
             });
         });
     bulk_replace(newLines);
+}
+
+/**
+  現在のバッファの名前のbasenameをWikiLinkとしてコピー
+*/
+function wiki_cmd() {
+  let buf = selected_buffer();
+  let url = buf.url;
+
+  if(buf.url) {
+    let name = String(buf.name).replace(/\.md$/, "");
+    copy_to_clipboard(`[[${name}]]`);
+  }
 }

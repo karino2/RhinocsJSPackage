@@ -31,15 +31,23 @@ String(get_rhinocs().getLogBuffer().toString())
 
 test
 
+let buf = selected_buffer();
+let url = buf.url;
+buf.name
+misc.js
+
+new FastFile(url)
+url
+content://com.android.externalstorage.documents/tree/primary%3ASyncthingDir%2FRhinocs/document/primary%3ASyncthingDir%2FRhinocs%2Fmisc.js
 
 
-print("test")
+
+[[サーフィン]]
+let test = "hogeika.md"
 
 
 
-function log() {
-  var lbuf = get_buffer_create("*print logs*");
-  set_buffer(lbuf);
-  delete_region(0, point_max(), false);
-  insert(get_rhinocs().getLogBuffer().toString(), false);
-}
+test.replace(/\.md$/, "")
+hogeika
+
+test

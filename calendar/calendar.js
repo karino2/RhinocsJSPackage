@@ -183,6 +183,6 @@
     return calendarPrint(y, m, 18, y, m, d);
   }
 
-  root.calendar = calendar;
+  root.calendar_cmd = calendar;
 
 })(typeof globalThis !== 'undefined' ? globalThis : this);
