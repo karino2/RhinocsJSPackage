@@ -49,23 +49,45 @@ function today_cmd() {
 }
 
 function blog_cmd() {
-    read_string("blog fname: ")
+    function after_url(url) {
+      read_string("blog fname: ")
       .then(fsym=> {
         const date = new Date().toISOString().slice(0, 10);  // YYYY-MM-DD
         const filename = `${date}-${fsym}.md`;
-        return select_new_file(filename)
-      })
-      .then(ff=>{
-        let buf = generate_new_buffer(ff.getName());
+        let buf = generate_new_buffer(filename);
         set_buffer(buf);
         insert(`---
 title: NewTitle
 layout: page
 ---
 `);
-        set_buffer_url(buf, ff.getUri());
+        let dir = open_dir(url);
+        let file = dir.createFile("text/markdown", filename);
+        if (file === null) {
+          console.log("create fail.");
+          message("fail to create file");
+          return;
+        }
+        
+        set_buffer_url(buf, file.getUri());
         save_buffer();
+        // hookの名前はいまいちだが、saveBufferで既に使ってるのでそのまま使う。
+        g_hooks.runHook("find_file_hook", file);
       });
+    }
+
+    let url_path = join_path(get_per_device_storage(), "/blog/", "url.txt");
+    let url = read_file(url_path);
+
+    if (url !== "")
+    {
+        after_url(url);
+        return;
+    }
+    select_open_dir().then(dir=> {
+        write_file(dir.getUri(), url_path);
+        after_url(dir.getUri());
+    });
 }
 
 /*
