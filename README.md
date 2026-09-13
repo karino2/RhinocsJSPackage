@@ -15,6 +15,12 @@ Extract and put directory on device and specify that directory from Rhinocs M-x 
 init.js is the first file which Rhinocs load.
 This file will be customized by every user.
 
+## Development information
+
+Good start point is reading builtins.js in assets folder in Rhinocs github.
+
+[Rhinocs/app/src/main/assets/builtins.js at main · karino2/Rhinocs](https://github.com/karino2/Rhinocs/blob/main/app/src/main/assets/builtins.js)
+
 ## Custom commands
 
 ### Filer
