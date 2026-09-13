@@ -8,13 +8,6 @@ load_js("/filer/filer.js").then(() => {
 
 load_js("/calendar/calendar.js");
 
-load_js("/executor/executor.js").then(() => {
-    global_set_key(["M-x"], () => {
-        execute_command();
-    });
-});
-
-
 // skk_all.jsは時間がかかるのでlazyにロード
 global_set_key(["C-x", "C-j"], () => {
     show_toast("Loading SKK...");
