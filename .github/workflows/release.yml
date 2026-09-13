@@ -21,9 +21,9 @@ jobs:
         run: |
           # 必要に応じて不要な .git フォルダを削除して圧縮
           find . -name ".git" -exec rm -rf {} +
-          zip -r Sources_all.zip .
+          zip -r RhinocsJS.zip .
 
       - name: Upload Zip to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: Sources_all.zip
+          files: RhinocsJS.zip
