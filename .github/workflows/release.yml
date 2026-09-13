@@ -1,0 +1,29 @@
+name: Release Zip with all Submodules
+
+on:
+  push:
+    tags:
+      - 'v[0-9]*' # v1, v1.0, v2 などのタグがプッシュされたときに実行
+
+permissions:
+  contents: write # Releaseにファイルを添付するために必要
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # サブモジュールも含めてチェックアウト
+
+      - name: Create Zip Archive
+        run: |
+          # 必要に応じて不要な .git フォルダを削除して圧縮
+          find . -name ".git" -exec rm -rf {} +
+          zip -r Sources_all.zip .
+
+      - name: Upload Zip to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Sources_all.zip
