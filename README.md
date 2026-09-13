@@ -3,13 +3,12 @@
 This repository is the JS package for [Rhinocs](https://github.com/karino2/Rhinocs).
 Use the same tag version of the one of Rhinocs.
 
-## SKK
+## Download
 
-SKK is submodule of this repository.
+Download RhinocsJS.zip file from [Releases](https://github.com/karino2/RhinocsJSPackage/releases) page.
 
-[karino2/RhinocsSKK: SKK port for Rhinocs](https://github.com/karino2/RhinocsSKK).
+Extract and put directory on device and specify that directory from Rhinocs M-x setup.
 
-If you want to download source zip from Release tag, you need to download SKK too.
 
 ## init.js
 
@@ -30,3 +29,11 @@ Filer keybind is start from "C-x C-d"
 ### Calendar
 
 `M-x calendar`
+
+## SKK Submodule
+
+SKK is submodule of this repository.
+
+[karino2/RhinocsSKK: SKK port for Rhinocs](https://github.com/karino2/RhinocsSKK).
+
+SKK is included in RhinocsJS.zip.
