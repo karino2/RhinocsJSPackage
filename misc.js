@@ -1,4 +1,4 @@
-
+global_set_key(["Escape", "x"], execute_command)
 global_set_key("C-s", isearch_forward);
 global_set_key("C-r", isearch_backward);
 

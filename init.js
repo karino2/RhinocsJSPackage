@@ -22,6 +22,8 @@ global_set_key(["C-x", "C-j"], () => {
     });
 });
 
+load_js(join_path(get_per_device_storage(), "dev_init.js"))
+
 /*
   ここより下は私が個人的に使うコマンドなど。
   本来は公開用レポジトリからは分けるべきものだが、他のユーザーが増えてくるまでは気にせずここに書いてしまう。
