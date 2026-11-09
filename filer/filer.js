@@ -39,8 +39,8 @@ function CreateFileUriDB(jsonName) {
 let fileHistory = CreateFileUriDB("file_history.json");
 fileHistory.load();
 
-g_hooks.addHook("find_file_hook", (file)=> {
-   fileHistory.push(file.getUri(), file.getName());
+g_hooks.addHook("find_file_hook", (file, isTmp)=> {
+   if(!isTmp) fileHistory.push(file.getUri(), file.getName());
 });
 
 function list_history() {
